@@ -1,5 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/shared/Footer";
+import Category from "./components/dropdown/Category";
+import Dropdownmenu from "./components/dropdown/Dropdownmenu";
+import DropdownContex from "./context/DropdownContex";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,8 +15,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="main-scrollbar">
+      <DropdownContex>
+        <body className={inter.className}>
+          <section className="sticky top-0 z-50 backdrop-blur-3xl bg-white/90 w-full  m-auto  ">
+            <Navbar />
+            <Category />
+            <Dropdownmenu />
+          </section>
+          {children}
+          <Footer/>
+        </body>
+      </DropdownContex>
     </html>
   );
 }
